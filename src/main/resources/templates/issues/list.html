@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>課題一覧 | 課題一覧アプリケーション</title>
+</head>
+<body>
+<h1>課題一覧</h1>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>概要</th>
+    </tr>
+
+    </thead>
+    <tbody>
+    <!-- th:を使うとThymeleaf機能でHTMl内で代入とか操作可能-->
+    <tr th:each="issue : ${issueList}">
+        <th th:text="${issue.id}">(id)</th>
+        <td th:text="${issue.summary}">(summary)</td>
+    <tr>
+    </tbody>
+</table>
+
+</body>
+</html>
