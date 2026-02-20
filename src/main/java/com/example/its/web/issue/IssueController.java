@@ -1,5 +1,7 @@
 package com.example.its.web.issue;
 
+import com.example.its.domain.issue.IssueService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import com.example.its.domain.issue.IssueEntity;
 import org.springframework.stereotype.Controller;
@@ -9,20 +11,16 @@ import java.util.List;
 
 //コントローラーにはアノテーション必要
 @Controller
+@RequiredArgsConstructor
 public class IssueController {
 
+    private final IssueService issueService;
+
     //get issue
-//@GetMapping("/issues") で指定するのがURL直結
+    //@GetMapping("/issues") で指定するのがURL直結
     @GetMapping("/issues")
     public String showList(Model model) {
-        List<IssueEntity> issueList = List.of(
-                new IssueEntity(1, "概要", "説明１"),
-                new IssueEntity(2, "概要", "説明２"),
-                new IssueEntity(3, "概要", "説明３")
-
-        );
-
-        model.addAttribute("issueList", issueList);
+        model.addAttribute("issueList", issueService.findAll());
         return "issues/list";
     }
 }
