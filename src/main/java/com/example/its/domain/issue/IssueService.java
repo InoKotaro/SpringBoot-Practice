@@ -1,16 +1,20 @@
 package com.example.its.domain.issue;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+//@RequiredArgsConstructorはコンストラクタを自動生成してくれる Lombokアノテーション
+//public JobController(JobService jobService) {
+//        this.jobService = jobService; 省略可
 public class IssueService {
+
+    private final IssueRepository issueRepository;
+
     public List<IssueEntity> findAll() {
-        return List.of(
-                new IssueEntity(1, "概要", "説明１"),
-                new IssueEntity(2, "概要", "説明２"),
-                new IssueEntity(3, "概要", "説明３")
-        );
+        return issueRepository.findAll();
     }
 }
