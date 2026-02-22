@@ -3,6 +3,8 @@ package com.example.its.domain.issue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+//データモデル層
+//DBテーブルと対応
 @AllArgsConstructor
 @Data
 public class IssueEntity {
