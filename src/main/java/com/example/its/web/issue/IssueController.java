@@ -1,15 +1,20 @@
 package com.example.its.web.issue;
 
+import com.example.its.domain.issue.IssueEntity;
 import com.example.its.domain.issue.IssueService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.ui.Model;
+
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -50,5 +55,13 @@ public class IssueController {
         issueService.create(form.getSummary(), form.getDescription());
         //return に"redirect:/issues"を指定すると2重サブミット対策できる（PRGパターン）
         return "redirect:/issues";
+    }
+
+    // GET localhost:8080/issue/1
+    @GetMapping("/{issueId}")
+    public String showDetail(@PathVariable("issueId") long issueId, Model model){
+
+        model.addAttribute("issue", issueService.findById(issueId));
+        return "issues/detail";
     }
 }

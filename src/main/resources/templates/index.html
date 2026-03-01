@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org" 
+
+th:replace="~{fragments/layout :: layout(~{::title}, ~{::body}) }">
+<!-- layout(~{::title}, ~{::body})はこのファイル内にある置き換えるタグを指定、順番は
+ fragments/layout内layout関数で定義されてる順番で適用される -->
+
 <head>
     <meta charset="UTF-8">
     <title>トップページ｜課題管理アプリケーション</title>
